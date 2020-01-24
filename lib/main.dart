@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'app/map_page.dart';
+import 'app/leaderboard_page.dart';
+import 'app/feed_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,38 +28,15 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     // TODO -This is really messily done, redo later
-    static Completer<GoogleMapController> _controller = Completer();
-
-    static const LatLng _center = const LatLng(-33.782583, 151.239167);
-
-    void _onMapCreated(GoogleMapController controller) {
-        _controller.complete(controller);
-    }
-
-    MapType _currentMapType = MapType.normal;
 
     int _selectedIndex = 0;
     static const TextStyle optionStyle =
     TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
     List<Widget> _widgetOptions = <Widget>[
-        GoogleMap(
-          onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-            },
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
-          ),
-        ),
-        Text(
-            'Leaderboard here',
-            style: optionStyle,
-        ),
-        Text(
-            'Something important here',
-            style: optionStyle,
-        ),
+        MapPage(),
+        LeaderboardPage(),
+        FeedPage()
     ];
 
     void _onItemTapped(int index) {
@@ -77,16 +57,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             bottomNavigationBar: BottomNavigationBar(
                 items: const <BottomNavigationBarItem>[
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        title: Text('Home'),
+                        icon: Icon(Icons.map),
+                        title: Text('Map'),
                     ),
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        title: Text('Home'),
+                        icon: Icon(Icons.grade),
+                        title: Text('Leaderboard'),
                     ),
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        title: Text('Home'),
+                        icon: Icon(Icons.blur_on),
+                        title: Text('Feed'),
                     ),
                 ],
                 currentIndex: _selectedIndex,
