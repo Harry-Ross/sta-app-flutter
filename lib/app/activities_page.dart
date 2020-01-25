@@ -6,9 +6,14 @@ class LeaderboardPage extends StatefulWidget {
 }
 
 class _LeaderboardPageState extends State<LeaderboardPage> {
+
+    final List<String> entries = <String>['Person 1', 'Person 2', 'Person 3'];
+
     Widget build(BuildContext context) {
         return new Scaffold (
-            body: Text('Leaderboard Here', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+            body: Text("hello"),
         );
     }
+
+    
 }

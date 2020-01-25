@@ -8,7 +8,7 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
     Widget build(BuildContext context) {
         return new Scaffold (
-            body: Text('Feed Here', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+            body: Center(child: Text('Feed Here', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))),
         );
     }
 }

@@ -29,7 +29,7 @@ class _MapPageState extends State<MapPage> {
 
     Widget _map() {
         return new GoogleMap(
-            mapType: MapType.satellite,
+            mapType: MapType.hybrid,
             onMapCreated: _onMapCreated,
             myLocationButtonEnabled: true,
             initialCameraPosition: CameraPosition(
