@@ -23,8 +23,26 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                         child: _list(),
-                        height: 250
+                        height: 180
                     ),
+                    GestureDetector(
+                        onTap: () {
+                            
+                        },
+                        child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                                children: <Widget>[
+                                    Icon(
+                                        Icons.more_horiz,
+                                        color: Colors.black,
+                                    ),
+                                    Text('   More', style: TextStyle(fontSize: 17))
+                                ],
+                            ),
+                        ),
+                    )
+                    
                 ]
             )
         );
