@@ -1,4 +1,6 @@
-class LeaderboardItem extends StatelessWidget {
-    final Data teamName;
+import 'package:flutter/material.dart';
 
-}
+// class LeaderboardItem extends StatelessWidget {
+//     final Data teamName;
+
+// }
