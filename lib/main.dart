@@ -7,6 +7,8 @@ import 'app/map_page.dart';
 import 'app/activities_page.dart';
 import 'app/feed_page.dart';
 
+import 'app/leaderboard_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -42,7 +44,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     List<Widget> _widgetOptions = <Widget>[
         HomePage(),
         FeedPage(),
-        LeaderboardPage(),
+        ActivityPage(),
         MapPage(),
     ];
 

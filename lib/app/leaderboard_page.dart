@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ActivityPage extends StatefulWidget {
+class LeaderboardPage extends StatefulWidget {
     @override
-    _ActivityPageState createState() => new _ActivityPageState();
+    _LeaderboardPageState createState() => new _LeaderboardPageState();
 }
 
-class _ActivityPageState extends State<ActivityPage> {
+class _LeaderboardPageState extends State<LeaderboardPage> {
 
     final List<String> entries = <String>['Person 1', 'Person 2', 'Person 3'];
 
