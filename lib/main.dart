@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
             home: MyStatefulWidget(),
             theme: ThemeData(
                 brightness: Brightness.light,
-                primaryColor: Colors.lightBlue[800],
+                primaryColor: Colors.lightBlue[700],
                 accentColor: Colors.cyan[600],
             )
         );
@@ -82,7 +82,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         title: Text('Map'),
                     ),
                 ],
-                fixedColor: Colors.amber[800],
+                fixedColor: Theme.of(context).primaryColor,
                 currentIndex: _selectedIndex,
                 unselectedItemColor: Colors.black,
                 showUnselectedLabels: true,
