@@ -10,5 +10,5 @@ class AuthenticationState {
     AuthenticationState.failed({this.authenticated = false});
 
     // If user signs out, set authenticated to false
-    AuthenticationState.signedOut({this.authenticated = false})
+    AuthenticationState.signedOut({this.authenticated = false});
 }
