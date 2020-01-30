@@ -53,6 +53,44 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             _selectedIndex = index;
         });
     }
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(
+                title: const Text("STA App"),
+            ),
+            body: Center(
+                child: _widgetOptions.elementAt(_selectedIndex),
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+                items: const <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        title: Text('Home'),
+                    ),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.blur_on),
+                        title: Text('Feed'),
+                    ),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.check),
+                        title: Text('Activities'),
+                    ),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.map),
+                        title: Text('Map'),
+                    ),
+                ],
+                fixedColor: Theme.of(context).primaryColor,
+                currentIndex: _selectedIndex,
+                unselectedItemColor: Colors.black,
+                showUnselectedLabels: true,
+                onTap: _onItemTapped,
+            ),
+        );
+ 
+    }
+}
 
     @override
     Widget build(BuildContext context) {
