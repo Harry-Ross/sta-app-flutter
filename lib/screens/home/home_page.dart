@@ -1,10 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:sta_app/app/authentication_state.dart';
-import 'package:sta_app/app/models/leaderboard_data.dart';
-
-import 'models/leaderboard_data.dart';
+import 'package:sta_app/models/leaderboard_data.dart';
 
 
 class HomePage extends StatefulWidget {

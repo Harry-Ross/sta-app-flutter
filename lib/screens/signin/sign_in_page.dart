@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sta_app/app/authentication_state.dart';
-import 'package:sta_app/app/services/authentication_service.dart';
+import 'package:sta_app/models/authentication_state.dart';
+import 'package:sta_app/services/authentication_service.dart';
 
 class SignInPage extends StatelessWidget {
     final StreamController<AuthenticationState> _streamController;

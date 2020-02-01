@@ -1,14 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sta_app/app/builder_page.dart';
-
-import 'app/home_page.dart';
-import 'app/map_page.dart';
-import 'app/activities_page.dart';
-import 'app/feed_page.dart';
-
-import 'app/leaderboard_page.dart';
+import 'package:sta_app/base_page.dart';
+import 'package:sta_app/models/authentication_state.dart';
+import 'package:sta_app/screens/signin/sign_in_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,7 +31,25 @@ class MyStatefulWidget extends StatefulWidget {
 
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+    final StreamController<AuthenticationState> _streamController = new StreamController<AuthenticationState>();
+
+    Widget buildUi(BuildContext context, AuthenticationState s) {
+        if (s.authenticated) {
+            return BasePage(_streamController);
+        } else {
+            return SignInPage(_streamController);
+        }
+    }
+
+    @override
     Widget build(BuildContext context) {
-        return new BuilderPage();
+        return new StreamBuilder<AuthenticationState>(
+            stream: _streamController.stream,
+            initialData: new AuthenticationState.initial(),
+            builder: (BuildContext context, AsyncSnapshot<AuthenticationState> snapshot) {
+                final state = snapshot.data;
+                return buildUi(context, state);
+            }
+        );
     }
 }

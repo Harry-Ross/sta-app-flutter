@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sta_app/app/authentication_state.dart';
-import 'package:sta_app/app/base_page.dart';
-import 'package:sta_app/app/home_page.dart';
-import 'package:sta_app/app/sign_in_page.dart';
+import 'package:sta_app/base_page.dart';
+import 'package:sta_app/models/authentication_state.dart';
+import 'package:sta_app/screens/signin/sign_in_page.dart';
 
 class BuilderPage extends StatelessWidget {
     final StreamController<AuthenticationState> _streamController = new StreamController<AuthenticationState>();
