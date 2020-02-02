@@ -1,10 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:sta_app/app/authentication_state.dart';
-import 'package:sta_app/app/models/leaderboard_data.dart';
-
-import 'models/leaderboard_data.dart';
+import 'package:sta_app/models/leaderboard_data.dart';
+import 'package:sta_app/screens/leaderboard/leaderboard_item.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -65,48 +61,10 @@ class _HomePageState extends State<HomePage> {
                     itemCount: data['teams'].length,
                     itemBuilder: (BuildContext context, int index) {
                         leaderboardData = new LeaderboardData.fromJson(data['teams'][index]);
-                        return _listItem(leaderboardData.team, leaderboardData.names, leaderboardData.points);
+                        return LeaderboardItem(leaderboardData.team, leaderboardData.names, leaderboardData.points);
                     },
                 );
             }
-        );
-    }
-
-    Widget _listItem(String team, String names, int points) {
-        return new Container(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-                children: <Widget>[
-                    Expanded(
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                                Container(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: Text(
-                                        team,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                        )
-                                    )
-                                ),
-                                Text(
-                                    names,
-                                    style: TextStyle(
-                                        color: Colors.grey[500],
-                                    )
-                                ),
-                            ],
-                        )
-                    ),
-                    Icon(
-                        Icons.star,
-                        color: Colors.red[500],
-                    ),
-                    Text(points.toString()),
-
-                ],
-            )
         );
     }
 }

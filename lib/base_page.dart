@@ -1,14 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sta_app/app/activities_page.dart';
-import 'package:sta_app/app/authentication_state.dart';
-import 'package:sta_app/app/feed_page.dart';
-import 'package:sta_app/app/home_page.dart';
-import 'package:sta_app/app/map_page.dart';
-import 'package:sta_app/app/models/leaderboard_data.dart';
-
-import 'models/leaderboard_data.dart';
+import 'package:sta_app/models/authentication_state.dart';
+import 'package:sta_app/screens/activities/activities_page.dart';
+import 'package:sta_app/screens/feed/feed_page.dart';
+import 'package:sta_app/screens/home/home_page.dart';
+import 'package:sta_app/screens/map/map_page.dart';
 
 
 class BasePage extends StatefulWidget {
@@ -48,9 +45,10 @@ class _BasePageState extends State<BasePage> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: const Text("STA App"),
+                centerTitle: true,
+                title: const Text("Logo here"),
             ),
-            body: Center(
+            body: Container(
                 child: _widgetOptions.elementAt(_selectedIndex),
             ),
             bottomNavigationBar: BottomNavigationBar(
