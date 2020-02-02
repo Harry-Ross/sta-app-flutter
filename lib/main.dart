@@ -3,13 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sta_app/app/builder_page.dart';
 
-import 'app/home_page.dart';
-import 'app/map_page.dart';
-import 'app/activities_page.dart';
-import 'app/feed_page.dart';
-
-import 'app/leaderboard_page.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
