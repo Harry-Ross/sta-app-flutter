@@ -22,6 +22,10 @@ class SignInPage extends StatelessWidget {
         }
     }
 
+    initState() {
+        signIn();
+    }
+
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(title: Text('Sign in')),

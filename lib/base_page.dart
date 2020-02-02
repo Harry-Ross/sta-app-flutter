@@ -45,9 +45,10 @@ class _BasePageState extends State<BasePage> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: const Text("STA App"),
+                centerTitle: true,
+                title: const Text("Logo here"),
             ),
-            body: Center(
+            body: Container(
                 child: _widgetOptions.elementAt(_selectedIndex),
             ),
             bottomNavigationBar: BottomNavigationBar(
