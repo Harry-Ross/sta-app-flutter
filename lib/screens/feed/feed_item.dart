@@ -5,7 +5,7 @@ class FeedItem extends StatelessWidget {
 
     FeedItem(this.name, this.teamName, this.content, this.images, this.profileImg);
     
-    //final Image _image = new Image.network(images);
+    // https://stackoverflow.com/questions/44290680/how-do-i-update-a-placeholder-image-with-an-async-image
 
     @override 
     Widget build (BuildContext context) {
