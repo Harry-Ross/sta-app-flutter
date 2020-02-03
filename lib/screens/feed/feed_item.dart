@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class FeedItem extends StatelessWidget {
-    final String name;
-    final String teamName;
-    final String content;
-    final String images;
-    final String profileImg;
+    final String name, teamName, content, images, profileImg;
 
     FeedItem(this.name, this.teamName, this.content, this.images, this.profileImg);
+    
+    //final Image _image = new Image.network(images);
 
     @override 
     Widget build (BuildContext context) {
@@ -53,8 +51,10 @@ class FeedItem extends StatelessWidget {
                         padding: EdgeInsets.only( top: 0, left: 8, right: 8, bottom: 8),
                         child: Align(
                             alignment: Alignment.topLeft,
-                            child: Image.network(images, 
-                                width: 150, 
+                            child: images == "" ? null : Container(
+                                height: 150,
+                                width: 150,
+                                child: Image.network(images,)
                             )
                         )
                     )
