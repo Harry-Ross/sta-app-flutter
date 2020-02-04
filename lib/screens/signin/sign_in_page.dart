@@ -6,7 +6,7 @@ import 'package:sta_app/services/authentication_service.dart';
 
 class SignInPage extends StatelessWidget {
     final StreamController<AuthenticationState> _streamController;
-    AuthenticationService _authenticationService = new AuthenticationService();
+    final AuthenticationService _authenticationService = new AuthenticationService();
 
     SignInPage(this._streamController);
 
@@ -30,9 +30,21 @@ class SignInPage extends StatelessWidget {
         return Scaffold(
             appBar: AppBar(title: Text('Sign in')),
             body: Center(
-                child: RaisedButton(
-                    child: Text('Sign in'),
-                    onPressed: signIn,
+                child: Form(
+                    child: Column(
+                        children: <Widget>[
+                            TextFormField(
+
+                            ),
+                            TextFormField(
+                                
+                            ),
+                            RaisedButton(
+                                child: Text('Sign in'),
+                                onPressed: signIn,
+                            )
+                        ]
+                    )
                 )
             )
         );
