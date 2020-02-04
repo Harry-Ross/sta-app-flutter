@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sta_app/models/leaderboard_data.dart';
 import 'package:sta_app/screens/leaderboard/leaderboard_item.dart';
 
@@ -9,6 +13,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+    List<String> _deviceData = [];
+
+    _HomePageState() {
+        getDeviceDetails().then((val) => setState(() {
+            _deviceData = val;
+        }));
+    }
 
     final Map data = {'teams': [{ 'team': 'Team 1', 'names': 'person x, person y, person z', 'points': 1050 }, { 'team': 'Team 2', 'names': 'person x, person y, person z', 'points': 730 }, { 'team': 'Team 3', 'names': 'person x, person y, person z', 'points': 670 }]};
 
@@ -20,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(10),
                         //alignment: Alignment.centerLeft,
                         child: Text(
-                            'Leaderboard', 
+                            _deviceData == [] ? "yeet" : _deviceData[1], 
                             style: TextStyle( fontWeight: FontWeight.bold, fontSize: 35,)
                         ),
                     ),
@@ -66,5 +77,31 @@ class _HomePageState extends State<HomePage> {
                 );
             }
         );
+    }
+
+    static Future<List<String>> getDeviceDetails() async {
+        String deviceName;
+        String deviceVersion;
+        String identifier; 
+        final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+
+        try {
+            if (Platform.isAndroid) {
+                var build = await deviceInfoPlugin.androidInfo;
+                deviceName = build.model;
+                deviceVersion = build.version.toString();
+                identifier = build.androidId;
+            } else if (Platform.isIOS) {
+                var data = await deviceInfoPlugin.iosInfo;
+                deviceName = data.name;
+                deviceVersion = data.systemVersion;
+                identifier = data.identifierForVendor;
+            }
+        } on PlatformException {
+            print("failure time");
+        }
+
+        return [deviceName, deviceVersion, identifier];
+ 
     }
 }

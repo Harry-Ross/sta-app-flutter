@@ -54,7 +54,8 @@ class FeedItem extends StatelessWidget {
                             child: images == "" ? null : Container(
                                 height: 150,
                                 width: 150,
-                                child: Image.network(images,)
+                                color: Colors.grey[800],
+                                child: /*Image.network(images)*/ CircularProgressIndicator()
                             )
                         )
                     )
