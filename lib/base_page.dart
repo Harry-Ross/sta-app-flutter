@@ -63,6 +63,9 @@ class _BasePageState extends State<BasePage> {
                         icon: Icon(Icons.blur_on),
                         title: Text('Feed'),
                     ),
+                    /* TODO https://stackoverflow.com/questions/49299457/how-to-add-button-to-bottom-navigation-bar-which-hang-out-above-flutter 
+                        implement this later
+                    */
                     BottomNavigationBarItem(
                         icon: Icon(Icons.cloud_upload),
                         title: Text('Upload')
