@@ -53,39 +53,42 @@ class _BasePageState extends State<BasePage> {
             body: Container(
                 child: _widgetOptions.elementAt(_selectedIndex),
             ),
-            bottomNavigationBar: BottomNavigationBar(
-                items: const <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        title: Text('Home'),
-                    ),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.blur_on),
-                        title: Text('Feed'),
-                    ),
-                    /* TODO https://stackoverflow.com/questions/49299457/how-to-add-button-to-bottom-navigation-bar-which-hang-out-above-flutter 
-                        implement this later
-                    */
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.cloud_upload),
-                        title: Text('Upload')
-                    ),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.check),
-                        title: Text('Activities'),
-                    ),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.map),
-                        title: Text('Map'),
-                    ),
-                ],
-                fixedColor: Theme.of(context).primaryColor,
-                currentIndex: _selectedIndex,
-                unselectedItemColor: Colors.black,
-                showUnselectedLabels: true,
-                onTap: _onItemTapped,
-                type: BottomNavigationBarType.fixed
-            ),
+            bottomNavigationBar: BottomAppBar(
+                child: Row(
+                    children: <Widget>[
+                        IconButton(icon: Icon(Icons.menu))
+                    ],
+                        //  BottomNavigationBarItem(
+                        //     icon: Icon(Icons.home),
+                        //     title: Text('Home'),
+                        // ),
+                        // BottomNavigationBarItem(
+                        //     icon: Icon(Icons.blur_on),
+                        //     title: Text('Feed'),
+                        // ),
+                        // /* TODO https://stackoverflow.com/questions/49299457/how-to-add-button-to-bottom-navigation-bar-which-hang-out-above-flutter 
+                        //     implement this later
+                        // */
+                        // BottomNavigationBarItem(
+                        //     icon: Icon(Icons.cloud_upload),
+                        //     title: Text('Upload')
+                        // ),
+                        // BottomNavigationBarItem(
+                        //     icon: Icon(Icons.check),
+                        //     title: Text('Activities'),
+                        // ),
+                        // BottomNavigationBarItem(
+                        //     icon: Icon(Icons.map),
+                        //     title: Text('Map'),
+                        // ),
+                        // fixedColor: Theme.of(context).primaryColor,
+                        // currentIndex: _selectedIndex,
+                        // unselectedItemColor: Colors.black,
+                        // showUnselectedLabels: true,
+                        // onTap: _onItemTapped,
+                        // type: BottomNavigationBarType.fixed
+                ),
+            )
         );
     }
 }
