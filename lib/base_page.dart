@@ -6,6 +6,7 @@ import 'package:sta_app/screens/activities/activities_page.dart';
 import 'package:sta_app/screens/feed/feed_page.dart';
 import 'package:sta_app/screens/home/home_page.dart';
 import 'package:sta_app/screens/map/map_page.dart';
+import 'package:sta_app/screens/upload/upload_page.dart';
 
 
 class BasePage extends StatefulWidget {
@@ -31,6 +32,7 @@ class _BasePageState extends State<BasePage> {
     List<Widget> _widgetOptions = <Widget>[
         HomePage(),
         FeedPage(),
+        UploadPage(),
         ActivityPage(),
         MapPage(),
     ];
@@ -62,6 +64,10 @@ class _BasePageState extends State<BasePage> {
                         title: Text('Feed'),
                     ),
                     BottomNavigationBarItem(
+                        icon: Icon(Icons.cloud_upload),
+                        title: Text('Upload')
+                    ),
+                    BottomNavigationBarItem(
                         icon: Icon(Icons.check),
                         title: Text('Activities'),
                     ),
@@ -75,6 +81,7 @@ class _BasePageState extends State<BasePage> {
                 unselectedItemColor: Colors.black,
                 showUnselectedLabels: true,
                 onTap: _onItemTapped,
+                type: BottomNavigationBarType.fixed
             ),
         );
     }

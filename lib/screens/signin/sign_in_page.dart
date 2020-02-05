@@ -29,24 +29,40 @@ class SignInPage extends StatelessWidget {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(title: Text('Sign in')),
-            body: Center(
-                child: Form(
-                    child: Column(
-                        children: <Widget>[
-                            TextFormField(
-
-                            ),
-                            TextFormField(
-                                
-                            ),
-                            RaisedButton(
-                                child: Text('Sign in'),
-                                onPressed: signIn,
-                            )
-                        ]
+            body: Center(child: Container(
+                height: 252,
+                width: 250,
+                child: Card(
+                    child: Form(
+                        child: Column(
+                            children: <Widget>[
+                                FlutterLogo(size: 100),
+                                Container(
+                                    width: 150,
+                                    child: TextFormField(
+                                        decoration: InputDecoration(
+                                            hintText: "Username",
+                                        ),
+                                    ),
+                                ),
+                                Container(
+                                    width: 150,
+                                    child: TextFormField(
+                                        decoration: InputDecoration(
+                                            hintText: "Password",
+                                        ),
+                                        obscureText: true,
+                                    ),
+                                ),
+                                RaisedButton(
+                                    child: Text('Sign in'),
+                                    onPressed: signIn,
+                                )
+                            ]
+                        )
                     )
                 )
-            )
+            ))
         );
     }
 }
