@@ -27,36 +27,55 @@ class _HomePageState extends State<HomePage> {
         return new Scaffold (
             body: Column(
                 children: <Widget>[
-                    Container(
-                        padding: const EdgeInsets.all(10),
-                        //alignment: Alignment.centerLeft,
-                        child: Text(
-                            _deviceData == [] ? "yeet" : _deviceData[1], 
-                            style: TextStyle( fontWeight: FontWeight.bold, fontSize: 35,)
-                        ),
-                    ),
-                    Container(
-                        child: _list(),
-                        height: 180
-                    ),
-                    GestureDetector(
-                        onTap: () {
-                            
-                        },
-                        child: Container(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                                children: <Widget>[
-                                    Icon(
-                                        Icons.more_horiz,
-                                        color: Colors.black,
+                    Card(
+                        child: Column(
+                            children: <Widget>[
+                                Container(
+                                    padding: const EdgeInsets.all(10),
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                        "Leaderboard", 
+                                        style: TextStyle( fontWeight: FontWeight.bold, fontSize: 25,)
                                     ),
-                                    Text('   More', style: TextStyle(fontSize: 17))
-                                ],
-                            ),
-                        ),
+                                ),
+                                Container(
+                                    child: _list(),
+                                    height: 180
+                                ),
+                                GestureDetector(
+                                    onTap: () { },
+                                    child: Container(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Row(
+                                            children: <Widget>[
+                                                Icon(
+                                                    Icons.more_horiz,
+                                                    color: Colors.black,
+                                                ),
+                                                Text('   More', style: TextStyle(fontSize: 17))
+                                            ],
+                                        ),
+                                    ),
+                                )
+                                
+                            ]
+                        )
+                    ),
+                    Card(
+                        child: Column(
+                            children: <Widget>[
+                                Container(
+                                    padding: const EdgeInsets.all(10),
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                        "Endpoint", 
+                                        style: TextStyle( fontWeight: FontWeight.bold, fontSize: 25,)
+                                    ),
+                                ),
+                                Container()
+                            ],
+                        )
                     )
-                    
                 ]
             )
         );

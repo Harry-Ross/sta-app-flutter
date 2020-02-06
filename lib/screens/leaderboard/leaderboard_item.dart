@@ -38,7 +38,7 @@ class LeaderboardItem extends StatelessWidget {
                     Text(points.toString()),
                     Icon(
                         Icons.star,
-                        color: Colors.red[500],
+                        color: Theme.of(context).primaryColor,
                     ),
 
                 ],

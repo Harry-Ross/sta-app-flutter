@@ -64,15 +64,15 @@ class _BasePageState extends State<BasePage> {
                 shape: CircularNotchedRectangle(),
                 notchMargin: 10,
                 child: Container(
-                    //height: 75,
+                    height: 55,
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                             IconButton(
-                                color: _selectedIndex == 0 ? Colors.blue[800] : Colors.black,
+                                color: _selectedIndex == 0 ? Theme.of(context).primaryColor : Colors.black,
                                 iconSize: 30.0,
-                                padding: EdgeInsets.all(14.0),
+                                padding: EdgeInsets.only(top: 14, bottom: 14,right: 30.0),
                                 icon: Icon(Icons.home),
                                 onPressed: () {
                                     setState(() {
@@ -81,9 +81,9 @@ class _BasePageState extends State<BasePage> {
                                 },
                             ),
                             IconButton(
-                                color: _selectedIndex == 1 ? Colors.blue[800] : Colors.black,
+                                color: _selectedIndex == 1 ? Theme.of(context).primaryColor : Colors.black,
                                 iconSize: 30.0,
-                                padding: EdgeInsets.only(right: 50.0),
+                                padding: EdgeInsets.only(top: 14, bottom: 14, right: 50.0),
                                 icon: Icon(Icons.blur_on),
                                 onPressed: () {
                                     setState(() {
@@ -92,9 +92,9 @@ class _BasePageState extends State<BasePage> {
                                 },
                             ),
                             IconButton(
-                                color: _selectedIndex == 2 ? Colors.blue[800] : Colors.black,
+                                color: _selectedIndex == 2 ? Theme.of(context).primaryColor : Colors.black,
                                 iconSize: 30.0,
-                                padding: EdgeInsets.only(left: 50.0),
+                                padding: EdgeInsets.only(top: 14, bottom: 14, left: 50.0),
                                 icon: Icon(Icons.check),
                                 onPressed: () {
                                     setState(() {
@@ -103,9 +103,9 @@ class _BasePageState extends State<BasePage> {
                                 },
                             ),
                             IconButton(
-                                color: _selectedIndex == 3 ? Colors.blue[800] : Colors.black,
+                                color: _selectedIndex == 3 ? Theme.of(context).primaryColor : Colors.black,
                                 iconSize: 30.0,
-                                padding: EdgeInsets.all(14.0),
+                                padding: EdgeInsets.only(top: 14, bottom: 14,left: 30.0),
                                 icon: Icon(Icons.map),
                                 onPressed: () {
                                     setState(() {
