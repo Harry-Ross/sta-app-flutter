@@ -27,12 +27,11 @@ class _BasePageState extends State<BasePage> {
 
     int _selectedIndex = 0;
     static const TextStyle optionStyle =
-    TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+    TextStyle(fontSize: 30, fontWeight: FontWeight.bold); 
 
     List<Widget> _widgetOptions = <Widget>[
         HomePage(),
         FeedPage(),
-        UploadPage(),
         ActivityPage(),
         MapPage(),
     ];
@@ -58,18 +57,22 @@ class _BasePageState extends State<BasePage> {
                 onPressed: () { },
                 tooltip: 'Increment',
                 child: Icon(Icons.add),
-                elevation: 2.0,
+                elevation: 5.0,
+                backgroundColor: Theme.of(context).primaryColor,
             ),
             bottomNavigationBar: BottomAppBar(
+                shape: CircularNotchedRectangle(),
+                notchMargin: 10,
                 child: Container(
                     //height: 75,
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                             IconButton(
+                                color: _selectedIndex == 0 ? Colors.blue[800] : Colors.black,
                                 iconSize: 30.0,
-                                padding: EdgeInsets.only(left: 28.0),
+                                padding: EdgeInsets.all(14.0),
                                 icon: Icon(Icons.home),
                                 onPressed: () {
                                     setState(() {
@@ -78,9 +81,10 @@ class _BasePageState extends State<BasePage> {
                                 },
                             ),
                             IconButton(
+                                color: _selectedIndex == 1 ? Colors.blue[800] : Colors.black,
                                 iconSize: 30.0,
-                                padding: EdgeInsets.only(left: 28.0),
-                                icon: Icon(Icons.home),
+                                padding: EdgeInsets.only(right: 50.0),
+                                icon: Icon(Icons.blur_on),
                                 onPressed: () {
                                     setState(() {
                                         _selectedIndex = 1;
@@ -88,9 +92,10 @@ class _BasePageState extends State<BasePage> {
                                 },
                             ),
                             IconButton(
+                                color: _selectedIndex == 2 ? Colors.blue[800] : Colors.black,
                                 iconSize: 30.0,
-                                padding: EdgeInsets.only(left: 28.0),
-                                icon: Icon(Icons.home),
+                                padding: EdgeInsets.only(left: 50.0),
+                                icon: Icon(Icons.check),
                                 onPressed: () {
                                     setState(() {
                                         _selectedIndex = 2;
@@ -98,9 +103,10 @@ class _BasePageState extends State<BasePage> {
                                 },
                             ),
                             IconButton(
+                                color: _selectedIndex == 3 ? Colors.blue[800] : Colors.black,
                                 iconSize: 30.0,
-                                padding: EdgeInsets.only(left: 28.0),
-                                icon: Icon(Icons.home),
+                                padding: EdgeInsets.all(14.0),
+                                icon: Icon(Icons.map),
                                 onPressed: () {
                                     setState(() {
                                         _selectedIndex = 3;
