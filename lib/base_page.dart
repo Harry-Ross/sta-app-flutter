@@ -53,41 +53,63 @@ class _BasePageState extends State<BasePage> {
             body: Container(
                 child: _widgetOptions.elementAt(_selectedIndex),
             ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+                onPressed: () { },
+                tooltip: 'Increment',
+                child: Icon(Icons.add),
+                elevation: 2.0,
+            ),
             bottomNavigationBar: BottomAppBar(
-                child: Row(
-                    children: <Widget>[
-                        IconButton(icon: Icon(Icons.menu))
-                    ],
-                        //  BottomNavigationBarItem(
-                        //     icon: Icon(Icons.home),
-                        //     title: Text('Home'),
-                        // ),
-                        // BottomNavigationBarItem(
-                        //     icon: Icon(Icons.blur_on),
-                        //     title: Text('Feed'),
-                        // ),
-                        // /* TODO https://stackoverflow.com/questions/49299457/how-to-add-button-to-bottom-navigation-bar-which-hang-out-above-flutter 
-                        //     implement this later
-                        // */
-                        // BottomNavigationBarItem(
-                        //     icon: Icon(Icons.cloud_upload),
-                        //     title: Text('Upload')
-                        // ),
-                        // BottomNavigationBarItem(
-                        //     icon: Icon(Icons.check),
-                        //     title: Text('Activities'),
-                        // ),
-                        // BottomNavigationBarItem(
-                        //     icon: Icon(Icons.map),
-                        //     title: Text('Map'),
-                        // ),
-                        // fixedColor: Theme.of(context).primaryColor,
-                        // currentIndex: _selectedIndex,
-                        // unselectedItemColor: Colors.black,
-                        // showUnselectedLabels: true,
-                        // onTap: _onItemTapped,
-                        // type: BottomNavigationBarType.fixed
-                ),
+                child: Container(
+                    //height: 75,
+                    child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                            IconButton(
+                                iconSize: 30.0,
+                                padding: EdgeInsets.only(left: 28.0),
+                                icon: Icon(Icons.home),
+                                onPressed: () {
+                                    setState(() {
+                                        _selectedIndex = 0;
+                                    });
+                                },
+                            ),
+                            IconButton(
+                                iconSize: 30.0,
+                                padding: EdgeInsets.only(left: 28.0),
+                                icon: Icon(Icons.home),
+                                onPressed: () {
+                                    setState(() {
+                                        _selectedIndex = 1;
+                                    });
+                                },
+                            ),
+                            IconButton(
+                                iconSize: 30.0,
+                                padding: EdgeInsets.only(left: 28.0),
+                                icon: Icon(Icons.home),
+                                onPressed: () {
+                                    setState(() {
+                                        _selectedIndex = 2;
+                                    });
+                                },
+                            ),
+                            IconButton(
+                                iconSize: 30.0,
+                                padding: EdgeInsets.only(left: 28.0),
+                                icon: Icon(Icons.home),
+                                onPressed: () {
+                                    setState(() {
+                                        _selectedIndex = 3;
+                                    });
+                                },
+                            ),
+                        ],
+                    ),
+                )
             )
         );
     }
