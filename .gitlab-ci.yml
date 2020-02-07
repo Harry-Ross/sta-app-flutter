@@ -1,20 +1,20 @@
-image: cirrusci/flutter:stable
+# image: cirrusci/flutter:stable
 
-stages:
-  - build
+# stages:
+#   - build
 
-before_script:
-  - flutter pub get
-  - flutter clean
+# before_script:
+#   - flutter pub get
+#   - flutter clean
 
-build: 
-  stage: build
+# build: 
+#   stage: build
 
-  script:
-    - flutter build
+#   script:
+#     - flutter build
 
-test:
-  stage: test
+# test:
+#   stage: test
 
-  script:
-    - flutter test test/*
+#   script:
+#     - flutter test test/*
