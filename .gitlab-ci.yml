@@ -2,7 +2,6 @@ image: cirrusci/flutter:stable
 
 stages:
   - build
-  - test
 
 before_script:
   - flutter pub get
