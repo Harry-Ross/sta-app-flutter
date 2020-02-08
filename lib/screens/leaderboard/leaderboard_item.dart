@@ -40,7 +40,6 @@ class LeaderboardItem extends StatelessWidget {
                         Icons.star,
                         color: Theme.of(context).primaryColor,
                     ),
-
                 ],
             )
         );

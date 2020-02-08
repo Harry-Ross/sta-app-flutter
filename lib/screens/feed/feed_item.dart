@@ -4,6 +4,8 @@ class FeedItem extends StatelessWidget {
     final String name, teamName, content, images, profileImg;
 
     FeedItem(this.name, this.teamName, this.content, this.images, this.profileImg);
+
+    bool _loading = true;
     
     // https://stackoverflow.com/questions/44290680/how-do-i-update-a-placeholder-image-with-an-async-image
 
@@ -53,9 +55,16 @@ class FeedItem extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: images == "" ? null : Container(
                                 height: 150,
-                                width: 150,
-                                color: Colors.grey[800],
-                                child: /*Image.network(images)*/ CircularProgressIndicator()
+                                //color: Colors.grey[800],
+                                child: Image.network(
+                                    images, 
+                                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent loadingProgress) {
+                                        if (loadingProgress == null) return child;
+                                        return Center(
+                                            child: CircularProgressIndicator()
+                                        );
+                                    },
+                                )
                             )
                         )
                     )

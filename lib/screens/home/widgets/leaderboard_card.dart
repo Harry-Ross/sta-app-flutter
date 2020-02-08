@@ -22,24 +22,29 @@ class LeaderboardCard extends StatelessWidget {
                     ),
                     Container(
                         child: _list(),
-                        height: 180
+                        height: 190
                     ),
-                    GestureDetector(
+                    InkWell(
                         onTap: () { },
                         child: Container(
-                            padding: const EdgeInsets.all(10),
+                            padding: EdgeInsets.all(10),
                             child: Row(
                                 children: <Widget>[
                                     Icon(
                                         Icons.more_horiz,
                                         color: Colors.black,
                                     ),
-                                    Text('   More', style: TextStyle(fontSize: 17))
+                                    Container(
+                                        padding: EdgeInsets.all(5),
+                                        child: Text(
+                                            'More',
+                                            style: TextStyle(fontSize: 17)
+                                        ),
+                                    )
                                 ],
                             ),
-                        ),
+                        )
                     )
-                    
                 ]
             )
         );
