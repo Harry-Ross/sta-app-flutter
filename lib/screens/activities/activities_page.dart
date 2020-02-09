@@ -14,7 +14,7 @@ class _ActivityPageState extends State<ActivityPage> {
                 children: <Widget>[
                     CategorySelector(),
                     Container(
-                        height: 495,
+                        height: 498,
                         child: ListView.builder(
                             itemCount: 30,
                             itemBuilder: (BuildContext context, int index) {
@@ -44,6 +44,7 @@ class _ActivityPageState extends State<ActivityPage> {
                                 ),
                             ),
                             Container(
+                                padding: EdgeInsets.all(10),
                                 alignment: Alignment.centerRight,
                                 child: Text("250"),
                             )
