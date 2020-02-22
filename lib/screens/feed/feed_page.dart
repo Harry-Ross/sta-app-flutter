@@ -46,7 +46,7 @@ class _FeedPageState extends State<FeedPage> {
     Widget _postList(PostData data) {
         return new ListView.builder(
             padding: const EdgeInsets.all(8),
-            itemCount: 3,
+            itemCount: data.posts.length,
             itemBuilder: (BuildContext context, int index) {
                 return FeedItem(
                     data.posts[index].name, 

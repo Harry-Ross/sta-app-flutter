@@ -36,12 +36,6 @@ class _BasePageState extends State<BasePage> {
         MapPage(),
     ];
 
-    void _onItemTapped(int index) {
-        setState(() {
-            _selectedIndex = index;
-        });
-    }
-
     @override
     Widget build(BuildContext context) {
         return Scaffold(
@@ -69,54 +63,33 @@ class _BasePageState extends State<BasePage> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                            IconButton(
-                                color: _selectedIndex == 0 ? Theme.of(context).primaryColor : Colors.black,
-                                iconSize: 30.0,
-                                padding: EdgeInsets.only(top: 14, bottom: 14,right: 30.0),
-                                icon: Icon(Icons.home),
-                                onPressed: () {
-                                    setState(() {
-                                        _selectedIndex = 0;
-                                    });
-                                },
+                            _navButton(Icon(Icons.home), 0),
+                            _navButton(Icon(Icons.blur_on), 1),
+                            Container(
+                                padding: EdgeInsets.only(left: 30.0, right: 30.0),
                             ),
-                            IconButton(
-                                color: _selectedIndex == 1 ? Theme.of(context).primaryColor : Colors.black,
-                                iconSize: 30.0,
-                                padding: EdgeInsets.only(top: 14, bottom: 14, right: 50.0),
-                                icon: Icon(Icons.blur_on),
-                                onPressed: () {
-                                    setState(() {
-                                        _selectedIndex = 1;
-                                    });
-                                },
-                            ),
-                            IconButton(
-                                color: _selectedIndex == 2 ? Theme.of(context).primaryColor : Colors.black,
-                                iconSize: 30.0,
-                                padding: EdgeInsets.only(top: 14, bottom: 14, left: 50.0),
-                                icon: Icon(Icons.check),
-                                onPressed: () {
-                                    setState(() {
-                                        _selectedIndex = 2;
-                                    });
-                                },
-                            ),
-                            IconButton(
-                                color: _selectedIndex == 3 ? Theme.of(context).primaryColor : Colors.black,
-                                iconSize: 30.0,
-                                padding: EdgeInsets.only(top: 14, bottom: 14,left: 30.0),
-                                icon: Icon(Icons.map),
-                                onPressed: () {
-                                    setState(() {
-                                        _selectedIndex = 3;
-                                    });
-                                },
-                            ),
+                            _navButton(Icon(Icons.check), 2),
+                            _navButton(Icon(Icons.map), 3)
                         ],
                     ),
                 )
             )
+        );
+    }
+
+    Widget _navButton(Icon icon, int index) {
+        return new Container(
+            padding: EdgeInsets.only(left: 20.0, right: 20.0),
+            child: IconButton(
+                color: _selectedIndex == index ? Theme.of(context).primaryColor : Colors.black,
+                iconSize: 30.0,
+                icon: icon,
+                onPressed: () {
+                    setState(() {
+                        _selectedIndex = index;
+                    });
+                },
+            ),
         );
     }
 }

@@ -10,19 +10,23 @@ class _ActivityPageState extends State<ActivityPage> {
     
     Widget build(BuildContext context) {
         return new Scaffold (
-            body: Column(
-                children: <Widget>[
-                    CategorySelector(),
-                    Container(
-                        height: 498,
-                        child: ListView.builder(
-                            itemCount: 30,
-                            itemBuilder: (BuildContext context, int index) {
-                                return _activityItem("Redwood Station");
-                            },
+            body: Center(
+                child: Column(
+                    children: <Widget>[
+                        CategorySelector(),
+                        Expanded(
+                            child: Container(
+                                child: ListView.builder(
+                                    itemCount: 30,
+                                    itemBuilder: (BuildContext context, int index) {
+                                        return _activityItem("Redwood Station");
+                                    },
+                                )
+                            ),
                         )
-                    )
-                ],
+                        
+                    ],
+                )
             )
         );
     }
