@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sta_app/models/post_data.dart';
 import 'package:sta_app/screens/feed/feed_item.dart';
+
+import 'package:http/http.dart' as http;
 
 class FeedPage extends StatefulWidget {
     @override
@@ -13,15 +19,39 @@ class _FeedPageState extends State<FeedPage> {
         { 'teamName': 'Team 3', 'name': 'Joe', 'content': "I'm living' in that 21st century Doing something mean to it Do it better than anybody you ever seen do it Screams from the haters, got a nice ring to it I guess every superhero need his theme music", "images": "", "profileImg": "https://www.wibc.com/sites/g/files/exi441/f/styles/large_730/public/201908/gettyimages-1157600392.jpg?itok=Cb0cATDB" }
     ]};
 
+    Future<PostData> _getPostDataFromJson(String path) async {
+        String jsonString = await rootBundle.loadString(path);
+        List<dynamic> postMap = jsonDecode(jsonString);
+
+        var postData = PostData.fromJson(postMap);
+        
+        return postData;
+    }
+
     Widget build(BuildContext context) {
         return new Scaffold(
-            body: ListView.builder(
-                padding: const EdgeInsets.all(8),
-                itemCount: 3,
-                itemBuilder: (BuildContext context, int index) {
-                    return FeedItem(data['posts'][index]['name'], data['posts'][index]['teamName'], data['posts'][index]['content'], data['posts'][index]['images'], data['posts'][index]['profileImg']);
-                }
-            ) 
+            body: Column(
+                children: <Widget>[
+                    RaisedButton(
+                        onPressed: () {
+                            _getPostDataFromJson("assets/posts.json");
+                        },
+                    ),
+                    
+                    //_postList()
+                ],
+            )
+             
+        );
+    }
+
+    Widget _postList() {
+        return new ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: 3,
+            itemBuilder: (BuildContext context, int index) {
+                return FeedItem(data['posts'][index]['name'], data['posts'][index]['teamName'], data['posts'][index]['content'], data['posts'][index]['images'], data['posts'][index]['profileImg']);
+            }
         );
     }
 }
