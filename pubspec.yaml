@@ -25,6 +25,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   google_maps_flutter: ^0.5.22+1
   device_info: ^0.4.1+4
+  location: ^2.5.3
+  permission_handler: ^4.3.0
   http: 
 
 

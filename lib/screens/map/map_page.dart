@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'package:permission_handler/permission_handler.dart';
+
 class MapPage extends StatefulWidget {
     MapPage({Key key}) : super(key: key);
 
@@ -53,9 +55,9 @@ class _MapPageState extends State<MapPage> {
 
     Widget _map() {
         return new GoogleMap(
+            myLocationEnabled: true,
             mapType: MapType.hybrid,
             onMapCreated: _onMapCreated,
-            myLocationButtonEnabled: true,
             markers: locations.values.toSet(),
             initialCameraPosition: CameraPosition(
                 target: _center,
