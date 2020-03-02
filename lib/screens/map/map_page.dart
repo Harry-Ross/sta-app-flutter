@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'package:permission_handler/permission_handler.dart';
+import 'package:location/location.dart';
 
 class MapPage extends StatefulWidget {
     MapPage({Key key}) : super(key: key);
@@ -24,6 +25,7 @@ class _MapPageState extends State<MapPage> {
             .then((onValue) {
                 myicon = onValue;
             });
+        getLocationPermission();
     }
 
     static Completer<GoogleMapController> _controller = Completer();
@@ -49,7 +51,13 @@ class _MapPageState extends State<MapPage> {
 
     Widget build(BuildContext context) {
         return new Scaffold(
-            body: _map()
+            body: FutureBuilder<bool>(
+                future: getLocationPermission(),
+                builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    return _map();
+                }
+            )
+            
         );
     }
 
@@ -65,5 +73,18 @@ class _MapPageState extends State<MapPage> {
             ),
             
         );
+    }
+
+    Future<bool> getLocationPermission() async {
+        final Location location = new Location();
+        try {
+            location.requestPermission(); //to lunch location permission popup
+        } on PlatformException catch (e) {
+            if (e.code == 'PERMISSION_DENIED') {
+                print('Permission denied');
+                return false;
+            }
+        }
+        return true;
     }
 }
