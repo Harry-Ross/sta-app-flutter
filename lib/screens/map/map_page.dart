@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:location/location.dart';
+import 'package:sta_app/models/activity_data.dart';
 
 class MapPage extends StatefulWidget {
     MapPage({Key key}) : super(key: key);
@@ -28,22 +30,37 @@ class _MapPageState extends State<MapPage> {
         getLocationPermission();
     }
 
+    Future<Set<Marker>> _getMarkersFromJson(String path) async {
+        String jsonString = await rootBundle.loadString(path);
+        List<dynamic> activityMap = jsonDecode(jsonString);
+
+        var activityData = ActivityData.fromJson(activityMap);
+        
+        Set<Marker> markers = activityData.activities.map((i) => Marker(
+            markerId: MarkerId(i.name), 
+            position: LatLng(i.lat, i.long),
+            icon: myicon
+        )).toSet();
+
+        return markers;
+    }
+
     static Completer<GoogleMapController> _controller = Completer();
 
-    static const LatLng _center = const LatLng(-33.782583, 151.239167);
+    LatLng _center = const LatLng(-33.792462, 151.239167);
 
-    final Map<String, Marker> locations = { 
-        "firstOne": Marker(
-            markerId: MarkerId("Yes that is quite epic time"),
-            position: LatLng(-33.792462, 151.251398),
-            infoWindow: InfoWindow(title: "yes"),
-            icon: myicon
-        ),
-        "secondOne": Marker(
-            markerId: MarkerId("Yes that is quite epic time but two"),
-            position: LatLng(-33.793936, 151.268728)
-        ),
-    };
+    // final Set<Marker> locations = { 
+    //     Marker(
+    //         markerId: MarkerId("Yes that is quite epic time"),
+    //         position: LatLng(-33.792462, 151.251398),
+    //         infoWindow: InfoWindow(title: "yes"),
+    //         icon: myicon
+    //     ),
+    //     Marker(
+    //         markerId: MarkerId("Yes that is quite epic time but two"),
+    //         position: LatLng(-33.793936, 151.268728)
+    //     ),
+    // };
 
     void _onMapCreated(GoogleMapController controller) {
         _controller.complete(controller);
@@ -62,16 +79,27 @@ class _MapPageState extends State<MapPage> {
     }
 
     Widget _map() {
-        return new GoogleMap(
-            myLocationEnabled: true,
-            mapType: MapType.hybrid,
-            onMapCreated: _onMapCreated,
-            markers: locations.values.toSet(),
-            initialCameraPosition: CameraPosition(
-                target: _center,
-                zoom: 11.0,
-            ),
-            
+        return FutureBuilder<Set<Marker>>(
+            future: _getMarkersFromJson('assets/activities.json'),
+            builder: (BuildContext context, AsyncSnapshot<Set<Marker>> snap) {
+                if (snap.hasData) {
+                    return GoogleMap(
+                        myLocationEnabled: true,
+                        mapType: MapType.hybrid,
+                        onMapCreated: _onMapCreated,
+                        markers: snap.data,
+                        initialCameraPosition: CameraPosition(
+                            target: _center,
+                            zoom: 11.0,
+                        ), 
+                    );
+                }
+                else {
+                    return Center(
+                        child: CircularProgressIndicator(backgroundColor: Colors.blue[800],),
+                    );
+                }
+            }
         );
     }
 

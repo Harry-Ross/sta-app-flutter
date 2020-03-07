@@ -79,7 +79,7 @@ class _BasePageState extends State<BasePage> {
 
     Widget _navButton(Icon icon, int index) {
         return new Container(
-            padding: EdgeInsets.only(left: 20.0, right: 20.0),
+            padding: EdgeInsets.only(left: 15.0, right: 15.0),
             child: IconButton(
                 color: _selectedIndex == index ? Theme.of(context).primaryColor : Colors.black,
                 iconSize: 30.0,

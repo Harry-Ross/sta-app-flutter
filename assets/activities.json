@@ -1,0 +1,16 @@
+[
+    { 
+        "category": "Pit stop", 
+        "name": "Fairly profitable business", 
+        "lat": -33.792462, 
+        "long": 151.251398, 
+        "points": 200 
+    }, 
+    { 
+        "category": "Pit stop", 
+        "name": "Another fairly profitable business", 
+        "lat": -33.793936, 
+        "long": 151.268728, 
+        "points": 200 
+    } 
+]
