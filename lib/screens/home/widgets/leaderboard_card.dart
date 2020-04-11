@@ -54,6 +54,7 @@ class LeaderboardCard extends StatelessWidget {
         return new FutureBuilder(
             builder: (context, snapshot) {
                 return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.all(8),
                     itemCount: data['teams'].length,
                     itemBuilder: (BuildContext context, int index) {

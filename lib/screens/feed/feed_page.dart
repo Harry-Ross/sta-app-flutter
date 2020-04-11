@@ -15,7 +15,8 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
 
     Future<PostData> _getPostDataFromJson(String path) async {
-        String jsonString = await rootBundle.loadString(path);
+        http.Response serverResponse = await http.get("http://10.1.1.3:3000/api/posts");
+        String jsonString = serverResponse.body;
         List<dynamic> postMap = jsonDecode(jsonString);
 
         var postData = PostData.fromJson(postMap);

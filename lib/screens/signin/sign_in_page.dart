@@ -23,7 +23,7 @@ class SignInPage extends StatelessWidget {
     }
 
     initState() {
-        signIn();
+        //signIn();
     }
 
     Widget build(BuildContext context) {
