@@ -20,6 +20,18 @@ class _ActivityPageState extends State<ActivityPage> {
         
         return activityData;
     }
+
+    bool changed = false;
+
+    void _changeTheBox(bool newValue) => setState(() {
+        changed = newValue;
+
+        if (changed) {
+            // W
+        } else {
+            // L
+        }
+    });
     
     Widget build(BuildContext context) {
         return new Scaffold (
@@ -61,30 +73,54 @@ class _ActivityPageState extends State<ActivityPage> {
     }
 
     Widget _activityItem (Activity activity) {
-        return InkWell(
-            onTap: () { },
-            child: Column(
-                children: <Widget>[
-                    Divider(),
-                    Row(
-                        children: <Widget>[
-                            Expanded(
-                                child: Container(
-                                    padding: EdgeInsets.all(10),
-                                    alignment: Alignment.centerLeft,
-                                    height: 36,
-                                    child: Text(activity.name)
-                                ),
-                            ),
-                            Container(
-                                padding: EdgeInsets.all(10),
-                                alignment: Alignment.centerRight,
-                                child: Text("${activity.points}"),
-                            )
-                        ],
-                    )
-                ],
-            )
+        return ExpansionTile(
+            leading: Checkbox(
+                value: activity.completed, 
+                onChanged: _changeTheBox
+            ),
+            title: Text(
+                activity.name, 
+                style: TextStyle(fontSize: 18)
+            ),
+            subtitle: Text(
+                "${activity.points}", 
+                style: TextStyle(fontWeight: FontWeight.bold)
+            ),
+            children: <Widget>[
+                Align(
+                    child: Text(
+                        activity.description, 
+                        style: TextStyle(), 
+                        textAlign: TextAlign.left
+                    ),
+                    alignment: Alignment.topLeft,
+                )
+            ],
         );
+        // return InkWell(
+        //     onTap: () { },
+        //     child: Column(
+        //         children: <Widget>[
+        //             Divider(),
+        //             Row(
+        //                 children: <Widget>[
+        //                     Expanded(
+        //                         child: Container(
+        //                             padding: EdgeInsets.all(10),
+        //                             alignment: Alignment.centerLeft,
+        //                             height: 36,
+        //                             child: Text(activity.name)
+        //                         ),
+        //                     ),
+        //                     Container(
+        //                         padding: EdgeInsets.all(10),
+        //                         alignment: Alignment.centerRight,
+        //                         child: Text("${activity.points}"),
+        //                     )
+        //                 ],
+        //             )
+        //         ],
+        //     )
+        // );
     }
 }

@@ -2,15 +2,19 @@
     { 
         "category": "Pit stop", 
         "name": "Fairly profitable business", 
+        "description": "Founded in 1914", 
         "lat": -33.792462, 
         "long": 151.251398, 
-        "points": 200 
+        "points": 200,
+        "completed": true 
     }, 
     { 
         "category": "Pit stop", 
         "name": "Another fairly profitable business", 
+        "description": "Founded tomorrow",
         "lat": -33.793936, 
         "long": 151.268728, 
-        "points": 200 
+        "points": 200,
+        "completed": false 
     } 
 ]

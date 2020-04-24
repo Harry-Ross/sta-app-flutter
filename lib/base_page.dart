@@ -26,8 +26,7 @@ class _BasePageState extends State<BasePage> {
     // TODO - This is really messily done, redo later
 
     int _selectedIndex = 0;
-    static const TextStyle optionStyle =
-    TextStyle(fontSize: 30, fontWeight: FontWeight.bold); 
+    static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold); 
 
     List<Widget> _widgetOptions = <Widget>[
         HomePage(),

@@ -14,25 +14,31 @@ class ActivityData {
 class Activity {
     String category;
     String name;
+    String description;
     double lat;
     double long;
     int points;
+    bool completed;
 
     factory Activity.fromJson(Map<String, dynamic> json) {
         return new Activity(
             json['category'],
             json['name'],
+            json['description'],
             json['lat'],
             json['long'],
-            json['points']
+            json['points'],
+            json['completed']
         );
     } 
 
     Activity(
         this.category, 
         this.name, 
+        this.description, 
         this.lat, 
         this.long, 
-        this.points
+        this.points,
+        this.completed
     );
 }
