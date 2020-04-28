@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:math';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,25 +15,17 @@ class ActivityPage extends StatefulWidget {
 class _ActivityPageState extends State<ActivityPage> {
 
     Future<ActivityData> _getPostDataFromJson(String path) async {
-        String jsonString = await rootBundle.loadString(path);
+        http.Response serverResponse = await http.get("http://10.1.1.3:3000/api/posts");
+        String jsonString = serverResponse.body;
+
         List<dynamic> activityMap = jsonDecode(jsonString);
 
         var activityData = ActivityData.fromJson(activityMap);
-        
+
         return activityData;
     }
 
-    bool changed = false;
-
-    void _changeTheBox(bool newValue) => setState(() {
-        changed = newValue;
-
-        if (changed) {
-            // W
-        } else {
-            // L
-        }
-    });
+    List<bool> checkboxesSelected = [];
     
     Widget build(BuildContext context) {
         return new Scaffold (
@@ -61,7 +55,8 @@ class _ActivityPageState extends State<ActivityPage> {
                             child: ListView.builder(
                                 itemCount: activities.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                    return _activityItem(activities[index]);
+                                    checkboxesSelected.add(activities[index].completed);
+                                    return _activityItem(activities[index], index);
                                 },
                             )
                         ),
@@ -72,11 +67,15 @@ class _ActivityPageState extends State<ActivityPage> {
         );
     }
 
-    Widget _activityItem (Activity activity) {
+    Widget _activityItem (Activity activity, int index) {
         return ExpansionTile(
             leading: Checkbox(
-                value: activity.completed, 
-                onChanged: _changeTheBox
+                value: checkboxesSelected[index], 
+                onChanged: (bool value) {
+                    setState(() {
+                        checkboxesSelected[index] = value;
+                    });
+                },
             ),
             title: Text(
                 activity.name, 
