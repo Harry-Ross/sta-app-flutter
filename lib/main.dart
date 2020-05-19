@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sta_app/base_page.dart';
 import 'package:sta_app/models/authentication_state.dart';
 import 'package:sta_app/screens/signin/sign_in_page.dart';
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
                 brightness: Brightness.light,
                 primaryColor: Colors.lightBlue[700],
                 accentColor: Colors.cyan[600],
+                textTheme: GoogleFonts.interTextTheme(
+                    Theme.of(context).textTheme
+                )
             )
         );
     }
