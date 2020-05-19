@@ -6,17 +6,19 @@ import 'dart:async';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthenticationService {
-    Future<bool> authenticate(String username, String password) async {
-        String url = "https://postman-echo.com/post?username=${username}&password=${password}";
-        http.Response response = await http.post(url);
-        if (json.decode(response.body)["token"]) {
-            storeJWT(json.decode(response.body)["token"]);
+    Future<bool> authenticate(String email, String password) async {
+        String url = "http://10.1.1.3:4000/api/auth/login";
+        http.Response response = await http.post(url, body:{ "email": email, "password": password });
+        print("token" + json.decode(response.body)["token"]);
+        if (json.decode(response.body)["token"] != null) {
+            print("auth am i right");
+            await storeJWT(json.decode(response.body)["token"]);
         }
         return response.statusCode == HttpStatus.ok;
     }
 
-    void storeJWT(String token) {
+    Future<void> storeJWT(String token) async {
         final storage = FlutterSecureStorage();
-        storage.write(key: "jwt", value: token);
+        await storage.write(key: "jwt", value: token);
     }
 }

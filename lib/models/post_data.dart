@@ -20,11 +20,11 @@ class Post {
 
     factory Post.fromJson(Map<String, dynamic> json) {
         return new Post(
-            json['name'], 
-            json['teamName'], 
+            json['user_id'], 
+            json['team_id'], 
             json['content'], 
             json['images'], 
-            json['profileImg']
+            json['id']
         );
     }
 

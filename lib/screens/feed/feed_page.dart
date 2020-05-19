@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sta_app/models/post_data.dart';
 
 import 'package:http/http.dart' as http;
@@ -21,14 +23,25 @@ class _FeedPageState extends State<FeedPage> {
     }
 
     Future<PostData> _getPostDataFromJson(String path) async {
-        http.Response serverResponse = await http.get("http://10.1.1.3:3000/api/posts");
-        String jsonString = serverResponse.body;
-        List<dynamic> postMap = jsonDecode(jsonString);
+        final storage = FlutterSecureStorage();
+        String token = await storage.read(key: "jwt");
 
-        var postData = PostData.fromJson(postMap);
-        print(postData.posts[0].name);
+        http.Response serverResponse = await http.get("http://10.1.1.3:4000/api/posts", 
+            headers: {"token": token}
+        );
+        var jsonString = serverResponse.body;
+        try {
+            List<dynamic> postMap = jsonDecode(jsonString)["posts"];
+            print("fuck");
+
+            var postData = PostData.fromJson(postMap);
+            print(postData.posts[0].name);
+            
+            return postData;
+        } catch(e) {
+            print(e);
+        }
         
-        return postData;
     }
 
     Widget build(BuildContext context) {
@@ -138,7 +151,7 @@ class _FeedPageState extends State<FeedPage> {
                         padding: EdgeInsets.only( top: 0, left: 8, right: 8, bottom: 8),
                         child: Align(
                             alignment: Alignment.topLeft,
-                            child: images == "" ? null : Container(
+                            child: images == null ? null : Container(
                                 height: 150,
                                 child: Image.network(
                                     images, 

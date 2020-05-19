@@ -8,6 +8,7 @@ import 'package:sta_app/screens/home/widgets/endpoint_card.dart';
 import 'package:sta_app/screens/home/widgets/leaderboard_card.dart';
 import 'package:sta_app/screens/home/widgets/rules_card.dart';
 import 'package:sta_app/screens/leaderboard/leaderboard_item.dart';
+import 'package:sta_app/services/authentication_service.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -17,6 +18,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
     List<String> _deviceData = [];
+    AuthenticationService _authenticationService = new AuthenticationService();
+
+    @override
+    void initState() {
+        super.initState();
+        print("test complete");
+        _authenticationService.authenticate("hazross@hotmail.com", "password").then((value) {
+            print(value);
+        });
+    }
+
 
     _HomePageState() {
         getDeviceDetails().then((val) => setState(() {

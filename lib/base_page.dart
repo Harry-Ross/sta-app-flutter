@@ -7,6 +7,7 @@ import 'package:sta_app/screens/feed/feed_page.dart';
 import 'package:sta_app/screens/home/home_page.dart';
 import 'package:sta_app/screens/map/map_page.dart';
 import 'package:sta_app/screens/upload/upload_page.dart';
+import 'package:sta_app/services/authentication_service.dart';
 
 
 class BasePage extends StatefulWidget {
@@ -25,6 +26,7 @@ class BasePage extends StatefulWidget {
 class _BasePageState extends State<BasePage> {
     // TODO - This is really messily done, redo later
 
+    
     int _selectedIndex = 0;
     static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold); 
 
