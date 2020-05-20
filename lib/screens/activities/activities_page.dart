@@ -1,11 +1,7 @@
-import 'dart:convert';
-import 'dart:math';
-import 'package:http/http.dart' as http;
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sta_app/models/activity_data.dart';
 import 'package:sta_app/screens/activities/widgets/category_selector.dart';
+import 'package:sta_app/services/activities_service.dart';
 
 class ActivityPage extends StatefulWidget {
     @override
@@ -14,23 +10,12 @@ class ActivityPage extends StatefulWidget {
 
 class _ActivityPageState extends State<ActivityPage> {
 
-    Future<ActivityData> _getPostDataFromJson(String path) async {
-        http.Response serverResponse = await http.get("http://10.1.1.3:3000/api/posts");
-        String jsonString = serverResponse.body;
-
-        List<dynamic> activityMap = jsonDecode(jsonString);
-
-        var activityData = ActivityData.fromJson(activityMap);
-
-        return activityData;
-    }
-
     List<bool> checkboxesSelected = [];
     
     Widget build(BuildContext context) {
         return new Scaffold (
             body: FutureBuilder<ActivityData>(
-                future: _getPostDataFromJson('assets/activities.json'),
+                future: ActivitiesService.getActivities(),
                 builder: (BuildContext context, AsyncSnapshot<ActivityData> snap) {
                     if (snap.hasData) {
                         return _activityList(snap.data.activities);

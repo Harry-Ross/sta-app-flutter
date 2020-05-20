@@ -12,7 +12,7 @@ class SignInPage extends StatelessWidget {
 
     signIn() async {
         _streamController.add(AuthenticationState.authenticated());
-        var result = await _authenticationService.authenticate("username", "password");
+        var result = await _authenticationService.authenticate("hazross@hotmail.com", "password");
 
         if (result) {
             _streamController.add(AuthenticationState.authenticated());

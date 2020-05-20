@@ -23,7 +23,6 @@ class _HomePageState extends State<HomePage> {
     @override
     void initState() {
         super.initState();
-        print("test complete");
         _authenticationService.authenticate("hazross@hotmail.com", "password").then((value) {
             print(value);
         });

@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sta_app/models/post_data.dart';
+import 'package:sta_app/models/user_data.dart';
 
-import 'package:http/http.dart' as http;
 import 'package:sta_app/screens/profile/profile_page.dart';
+import 'package:sta_app/services/user_service.dart';
 import '../../services/feed_service.dart';
 
 class FeedPage extends StatefulWidget {
@@ -64,6 +64,52 @@ class _FeedPageState extends State<FeedPage> {
         );
     }
 
+    Widget _authorRow(User user) {
+        return Row (
+            children: <Widget>[
+                Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: CircleAvatar(
+                        radius: 16,
+                        backgroundImage: user.profileImg != null ? NetworkImage(user.profileImg) : null,
+                    ),
+                ),
+                Expanded(
+                    child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Row(
+                            children: <Widget>[
+                                InkWell(
+                                    onTap: () {
+                                        print("something");
+                                    },
+                                    child: Text(
+                                        user.firstname + " " + user.lastname, 
+                                        textAlign: TextAlign.left, 
+                                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)
+                                    ),
+                                ),
+                                Text(
+                                    " - ", 
+                                    textAlign: TextAlign.left, 
+                                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)
+                                ),
+                                InkWell(
+                                    child: Text(
+                                        "nah lol", 
+                                        textAlign: TextAlign.left, 
+                                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)
+                                    ),
+                                )
+                            ],
+                        )
+                        
+                    )
+                ),
+            ],
+        );
+    }
+
     Widget _feedItem(name, teamName, content, images, profileImg) {
         return Card(
             child: Column(
@@ -71,49 +117,16 @@ class _FeedPageState extends State<FeedPage> {
                     Container(
                         height: 50,
                         color: Colors.grey[300],
-                        child: Row (
-                            children: <Widget>[
-                                Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: CircleAvatar(
-                                        radius: 16,
-                                        backgroundImage: NetworkImage(profileImg),
-                                    ),
-                                ),
-                                Expanded(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Row(
-                                            children: <Widget>[
-                                                InkWell(
-                                                    onTap: () {
-                                                        print("something");
-                                                    },
-                                                    child: Text(
-                                                        name, 
-                                                        textAlign: TextAlign.left, 
-                                                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)
-                                                    ),
-                                                ),
-                                                Text(
-                                                    " - ", 
-                                                    textAlign: TextAlign.left, 
-                                                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)
-                                                ),
-                                                InkWell(
-                                                    child: Text(
-                                                        teamName, 
-                                                        textAlign: TextAlign.left, 
-                                                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)
-                                                    ),
-                                                )
-                                            ],
-                                        )
-                                        
-                                    )
-                                ),
-                            ],
-                        ),
+                        child: FutureBuilder(
+                            future: UserService.getUser(name),
+                            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                if (snapshot.hasData) {
+                                    return _authorRow(snapshot.data);
+                                } else {
+                                    return CircularProgressIndicator();
+                                }
+                            }
+                        )
                     ),
                     Padding(
                         padding: const EdgeInsets.all(8),

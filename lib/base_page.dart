@@ -6,8 +6,6 @@ import 'package:sta_app/screens/activities/activities_page.dart';
 import 'package:sta_app/screens/feed/feed_page.dart';
 import 'package:sta_app/screens/home/home_page.dart';
 import 'package:sta_app/screens/map/map_page.dart';
-import 'package:sta_app/screens/upload/upload_page.dart';
-import 'package:sta_app/services/authentication_service.dart';
 
 
 class BasePage extends StatefulWidget {

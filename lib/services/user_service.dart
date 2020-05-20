@@ -7,15 +7,15 @@ import 'package:http/http.dart' as http;
 
 
 class UserService {
-    Future<User> getUser() async {
-        final storage = FlutterSecureStorage   ();
+    static Future<User> getUser(String user_id) async {
+        final storage = FlutterSecureStorage();
         String token = await storage.read(key: "jwt");
 
-        http.Response serverResponse = await http.get("http://10.1.1.3:4000/api/posts", 
+        http.Response serverResponse = await http.get("http://10.1.1.3:4000/api/user/" + user_id, 
             headers: {"token": token}
         );
         var jsonString = serverResponse.body;
-        Map<String, String> userMap = jsonDecode(jsonString);
+        Map<String, dynamic> userMap = await jsonDecode(jsonString);
         User user = User.fromJson(userMap);
         return user;
     }

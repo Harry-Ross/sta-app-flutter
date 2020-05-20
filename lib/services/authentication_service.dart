@@ -9,9 +9,7 @@ class AuthenticationService {
     Future<bool> authenticate(String email, String password) async {
         String url = "http://10.1.1.3:4000/api/auth/login";
         http.Response response = await http.post(url, body:{ "email": email, "password": password });
-        print("token" + json.decode(response.body)["token"]);
         if (json.decode(response.body)["token"] != null) {
-            print("auth am i right");
             await storeJWT(json.decode(response.body)["token"]);
         }
         return response.statusCode == HttpStatus.ok;

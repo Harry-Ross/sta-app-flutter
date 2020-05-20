@@ -15,10 +15,8 @@ class FeedService {
         
         try {
             List<dynamic> postMap = jsonDecode(jsonString)["posts"];
-            print("fuck");
 
             var postData = PostData.fromJson(postMap);
-            print(postData.posts[0].name);
             
             return postData;
         } catch(e) {
