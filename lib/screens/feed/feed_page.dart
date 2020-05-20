@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -7,6 +6,7 @@ import 'package:sta_app/models/post_data.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:sta_app/screens/profile/profile_page.dart';
+import '../../services/feed_service.dart';
 
 class FeedPage extends StatefulWidget {
     @override
@@ -22,28 +22,6 @@ class _FeedPageState extends State<FeedPage> {
         super.initState();
     }
 
-    Future<PostData> _getPostDataFromJson(String path) async {
-        final storage = FlutterSecureStorage();
-        String token = await storage.read(key: "jwt");
-
-        http.Response serverResponse = await http.get("http://10.1.1.3:4000/api/posts", 
-            headers: {"token": token}
-        );
-        var jsonString = serverResponse.body;
-        try {
-            List<dynamic> postMap = jsonDecode(jsonString)["posts"];
-            print("fuck");
-
-            var postData = PostData.fromJson(postMap);
-            print(postData.posts[0].name);
-            
-            return postData;
-        } catch(e) {
-            print(e);
-        }
-        
-    }
-
     Widget build(BuildContext context) {
         return new Scaffold(
             body: currentWidget
@@ -56,7 +34,7 @@ class _FeedPageState extends State<FeedPage> {
 
     Widget _feed() {
         return new FutureBuilder<PostData>(
-            future: _getPostDataFromJson("assets/posts.json"),
+            future: FeedService.getPosts(),
             builder: (BuildContext context, AsyncSnapshot<PostData> snap) { 
                 if (snap.hasData) {
                     return _postList(snap.data);
