@@ -8,7 +8,7 @@ class FeedService {
         final storage = FlutterSecureStorage();
         String token = await storage.read(key: "jwt");
 
-        http.Response serverResponse = await http.get("http://10.1.1.3:4000/api/posts", 
+        http.Response serverResponse = await http.get("http://10.1.1.142:4000/api/posts", 
             headers: {"token": token}
         );
         var jsonString = serverResponse.body;

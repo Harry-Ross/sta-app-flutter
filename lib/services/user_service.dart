@@ -11,7 +11,7 @@ class UserService {
         final storage = FlutterSecureStorage();
         String token = await storage.read(key: "jwt");
 
-        http.Response serverResponse = await http.get("http://10.1.1.3:4000/api/user/" + user_id, 
+        http.Response serverResponse = await http.get("http://10.1.1.142:4000/api/user/" + user_id, 
             headers: {"token": token}
         );
         var jsonString = serverResponse.body;

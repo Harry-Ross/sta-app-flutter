@@ -1,26 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sta_app/models/authentication_state.dart';
+import 'package:provider/provider.dart';
 import 'package:sta_app/services/authentication_service.dart';
 
 class SignInPage extends StatelessWidget {
-    final StreamController<AuthenticationState> _streamController;
-    AuthenticationService _authenticationService = new AuthenticationService();
-
-    SignInPage(this._streamController);
-
-    signIn() async {
-        _streamController.add(AuthenticationState.authenticated());
-        var result = await _authenticationService.authenticate("hazross@hotmail.com", "password");
-
-        if (result) {
-            _streamController.add(AuthenticationState.authenticated());
-        }
-        else {
-            _streamController.add(AuthenticationState.failed());
-        }
-    }
 
     initState() {
         //signIn();
@@ -56,7 +40,11 @@ class SignInPage extends StatelessWidget {
                                 ),
                                 RaisedButton(
                                     child: Text('Sign in'),
-                                    onPressed: signIn,
+                                    onPressed: (() => {
+                                        Provider.of<AuthenticationService>(context).signIn("hazross@hotmail.com", "password").then((val) => {
+                                            // error handling here based on value of val boolean
+                                        })
+                                    }),
                                 )
                             ]
                         )

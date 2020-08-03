@@ -8,7 +8,7 @@ class ActivitiesService {
         final storage = FlutterSecureStorage();
         String token = await storage.read(key: "jwt");
 
-        http.Response serverResponse = await http.get("http://10.1.1.3:4000/api/games/game_id_here/activities", 
+        http.Response serverResponse = await http.get("http://10.1.1.142:4000/api/games/game_id_here/activities", 
             headers: {"token": token}
         );
 
